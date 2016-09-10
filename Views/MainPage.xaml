@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentPage 
+	xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:local="clr-namespace:SQLiteExample"
+	x:Class="SQLiteExample.MainPage"
+	x:Name="MainPage">
+	<StackLayout Padding="20">
+		<Entry
+			Text="{Binding FirstName}"
+			Placeholder="First Name"/>
+		<Entry
+			Text="{Binding LastName}"
+			Placeholder="Last Name"/>
+		<Entry
+			Text="{Binding Age}"
+			Placeholder="Age" 
+			Keyboard="Numeric"/>
+		<Picker 
+			Title="Gender"
+			SelectedIndex="{Binding GenderIndex}">
+			<Picker.Items>
+				<x:String>Male</x:String>
+				<x:String>Female</x:String>
+			</Picker.Items>
+		</Picker>
+		<Button 
+			Text="Add"
+			TextColor="White"
+			BackgroundColor="Green"
+			Command="{Binding AddCommand}"/>
+		<ListView ItemsSource="{Binding Records}">
+			<ListView.ItemTemplate>
+				<DataTemplate>
+					<TextCell Text="{Binding}">
+						<TextCell.ContextActions>
+				            <MenuItem 
+								Command="{Binding Path=BindingContext.DeleteCommand, Source={x:Reference Name=MainPage}}" 
+								CommandParameter="{Binding .}"
+               					Text="Delete"
+								IsDestructive="True" />
+						</TextCell.ContextActions>
+					</TextCell>
+				</DataTemplate>
+			</ListView.ItemTemplate>
+		</ListView>
+		<Button 
+			Text="Delete All"
+			TextColor="White"
+			BackgroundColor="Red"
+			Command="{Binding DeleteAllCommand}"/>
+		<StackLayout Orientation="Horizontal">
+			<Button 
+				Text="Females"
+				TextColor="Black"
+				BackgroundColor="Fuchsia"
+				Command="{Binding GenderCommand}"
+				CommandParameter="Female"/>
+			<Button 
+				Text="Males"
+				TextColor="Black"
+				BackgroundColor="Aqua"
+				Command="{Binding GenderCommand}"
+				CommandParameter="Male"/>
+			<Button 
+				Text="10+"
+				TextColor="Black"
+				BackgroundColor="Silver"
+				Command="{Binding AgeFilterCommand}"
+				CommandParameter="10"/>
+			<Button 
+				Text="20+"
+				TextColor="Black"
+				BackgroundColor="Silver"
+				Command="{Binding AgeFilterCommand}"
+				CommandParameter="20"/>
+			<Button 
+				Text="30+"
+				TextColor="Black"
+				BackgroundColor="Silver"
+				Command="{Binding AgeFilterCommand}"
+				CommandParameter="30"/>
+			<Button 
+				Text="40+"
+				TextColor="Black"
+				BackgroundColor="Silver"
+				Command="{Binding AgeFilterCommand}"
+				CommandParameter="40"/>
+			<Button 
+				Text="50+"
+				TextColor="Black"
+				BackgroundColor="Silver"
+				Command="{Binding AgeFilterCommand}"
+				CommandParameter="50"/>
+		</StackLayout>
+	</StackLayout>
+</ContentPage>
